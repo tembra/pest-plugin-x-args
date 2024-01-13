@@ -1,0 +1,82 @@
+{
+    "name": "tembra/pest-plugin-x-args",
+    "version": "2.0.0",
+    "description": "The Pest X-Args Plugin",
+    "keywords": [
+        "php",
+        "framework",
+        "pest",
+        "unit",
+        "test",
+        "testing",
+        "plugin",
+        "x",
+        "argument",
+        "arguments",
+        "arg",
+        "args",
+        "parameter",
+        "parameters",
+        "command line",
+        "command-line"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thieres Tembra",
+            "email": "tdt@mytdt.com.br"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "pestphp/pest": "^2.5",
+        "pestphp/pest-plugin": "^2.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tembra\\Pest\\Plugins\\XArgs\\": "src/"
+        },
+        "files": [
+            "src/Autoload.php"
+        ]
+    },
+    "require-dev": {
+        "marcocesarato/php-conventional-changelog": "^1.17",
+        "pestphp/pest-dev-tools": "^2.9"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "refacto": "rector",
+        "lint": "pint",
+        "test:refacto": "rector --dry-run",
+        "test:lint": "pint --test",
+        "test:types": "phpstan analyse --ansi",
+        "test:unit": "pest --colors=always --x-test --x-key=value --x-any-key=\"any value inside quotes\" --x-special-chars-value=\"\\`-=~!@#$%^&*()_+[]\\{}|;':\\\",./<>? \" --x-speci@l_k3y+on.\\\"AnY\\'!cAsE=value --x-value-with-equal=arg=value --x-arg=key=value",
+        "test": [
+            "@test:refacto",
+            "@test:lint",
+            "@test:types",
+            "@test:unit"
+        ],
+        "changelog": "conventional-changelog",
+        "release": "conventional-changelog --commit",
+        "release:patch": "conventional-changelog --patch --commit",
+        "release:minor": "conventional-changelog --minor --commit",
+        "release:major": "conventional-changelog --major --commit"
+    },
+    "extra": {
+        "pest": {
+            "plugins": [
+                "Tembra\\Pest\\Plugins\\XArgs\\Plugin"
+            ]
+        }
+    }
+}
